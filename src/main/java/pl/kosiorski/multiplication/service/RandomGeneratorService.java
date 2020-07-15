@@ -1,4 +1,6 @@
 package pl.kosiorski.multiplication.service;
 
-public class RandomGeneratorService {
+public interface RandomGeneratorService {
+
+  int generateRandomFactor();
 }

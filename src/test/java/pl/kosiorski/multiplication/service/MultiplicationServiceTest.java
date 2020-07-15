@@ -1,12 +1,13 @@
 package pl.kosiorski.multiplication.service;
 
-import org.assertj.core.internal.bytebuddy.implementation.bytecode.Multiplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.kosiorski.multiplication.domain.Multiplication;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 

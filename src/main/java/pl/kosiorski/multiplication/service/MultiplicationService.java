@@ -1,4 +1,8 @@
 package pl.kosiorski.multiplication.service;
 
-public class MultiplicationService {
+import pl.kosiorski.multiplication.domain.Multiplication;
+
+public interface MultiplicationService {
+
+  Multiplication createRandomMultiplication();
 }
