@@ -8,11 +8,11 @@ import pl.kosiorski.multiplication.domain.Multiplication;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 
 public class MultiplicationServiceImplTest {
 
-  @Mock
-  private RandomGeneratorService randomGeneratorService;
+  @Mock private RandomGeneratorService randomGeneratorService;
   private MultiplicationServiceImpl multiplicationServiceImpl;
 
   @Before
@@ -21,17 +21,47 @@ public class MultiplicationServiceImplTest {
     this.multiplicationServiceImpl = new MultiplicationServiceImpl(randomGeneratorService);
   }
 
+  //  @Test
+  //  public void createRandomMultiplicationTest() {
+  //    //given
+  //    given(randomGeneratorService.generateRandomFactor()).willReturn(50, 30);
+  //
+  //    //when
+  //    Multiplication multiplication = multiplicationServiceImpl.createRandomMultiplication();
+  //
+  //    //then
+  //    assertThat(multiplication.getFactorA()).isEqualTo(50);
+  //    assertThat(multiplication.getFactorB()).isEqualTo(30);
+  //    assertThat(multiplication.getResult()).isEqualTo(1500);
+  //  }
+
   @Test
-  public void createRandomMultiplicationTest() {
-    //given
-    given(randomGeneratorService.generateRandomFactor()).willReturn(50, 30);
+  public void checkCorrectAttemptTest() {
+    // given
+    Multiplication multiplication = new Multiplication(50, 60);
+    User user = new User("adam kowalski");
+    MultiplicationResultAttempt attempt =
+        new MultiplicationResultAttempt(user, multiplication, 3000);
 
-    //when
-    Multiplication multiplication = multiplicationServiceImpl.createRandomMultiplication();
+    // when
+    boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
 
-    //then
-    assertThat(multiplication.getFactorA()).isEqualTo(50);
-    assertThat(multiplication.getFactorB()).isEqualTo(30);
-    assertThat(multiplication.getResult()).isEqualTo(1500);
+    // then
+    assertThat(attemptResult).isTrue();
+  }
+
+  @Test
+  public void checkWrongAttemptTest() {
+    // given
+    Multiplication multiplication = new Multiplication(50, 60);
+    User user = new User("adam kowalski");
+    MultiplicationResultAttempt attempt =
+        new MultiplicationResultAttempt(user, multiplication, 6666);
+
+    // when
+    boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+
+    // then
+    assertThat(attemptResult).isFalse();
   }
 }
