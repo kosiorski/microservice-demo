@@ -5,10 +5,9 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pl.kosiorski.multiplication.domain.Multiplication;
+import pl.kosiorski.multiplication.domain.MultiplicationResultAttempt;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 
 public class MultiplicationServiceImplTest {
 
