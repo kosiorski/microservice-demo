@@ -1,13 +1,13 @@
 package pl.kosiorski.multiplication.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.kosiorski.multiplication.domain.Multiplication;
 
+@Service
 public class MultiplicationServiceImpl implements MultiplicationService {
 
-  private RandomGeneratorService randomGeneratorService;
+  private final RandomGeneratorService randomGeneratorService;
 
-  @Autowired
   public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService) {
     this.randomGeneratorService = randomGeneratorService;
   }

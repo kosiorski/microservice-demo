@@ -1,8 +1,16 @@
 package pl.kosiorski.multiplication.service;
 
-public class RandomGeneratorServiceImpl implements RandomGeneratorService {
-    @Override
-    public int generateRandomFactor() {
-    return 0;
-    }
+import org.springframework.stereotype.Service;
+
+import java.util.Random;
+
+@Service
+class RandomGeneratorServiceImpl implements RandomGeneratorService {
+  static final int MINIMUM_FACTOR = 11;
+  static final int MAXIMUM_FACTOR = 99;
+
+  @Override
+  public int generateRandomFactor() {
+    return new Random().nextInt((MAXIMUM_FACTOR - MINIMUM_FACTOR) + 1) + MINIMUM_FACTOR;
+  }
 }
