@@ -5,11 +5,15 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+@RequiredArgsConstructor
 @Getter
 @ToString
-@RequiredArgsConstructor
 @EqualsAndHashCode
-public class User {
+public final class User {
 
   private final String alias;
+
+  protected User() {
+    alias = null;
+  }
 }

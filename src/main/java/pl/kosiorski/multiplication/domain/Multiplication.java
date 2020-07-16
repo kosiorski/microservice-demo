@@ -5,12 +5,16 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+@RequiredArgsConstructor
 @Getter
 @ToString
-@RequiredArgsConstructor
 @EqualsAndHashCode
 public final class Multiplication {
 
-  private int factorA;
-  private int factorB;
+  private final int factorA;
+  private final int factorB;
+
+  Multiplication() {
+    this(0, 0);
+  }
 }
