@@ -21,11 +21,10 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest(MultiplicationController.class)
 public class MultiplicationControllerTest {
 
   @MockBean private MultiplicationService multiplicationService;
-
   @Autowired private MockMvc mockMvc;
 
   private JacksonTester<Multiplication> json;
