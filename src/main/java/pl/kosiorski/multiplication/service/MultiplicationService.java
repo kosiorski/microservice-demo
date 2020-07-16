@@ -7,5 +7,5 @@ public interface MultiplicationService {
 
   Multiplication createRandomMultiplication();
 
-  boolean checkAttempt(final MultiplicationResultAttempt attempt);
+  boolean checkAttempt(final MultiplicationResultAttempt resultAttempt);
 }
