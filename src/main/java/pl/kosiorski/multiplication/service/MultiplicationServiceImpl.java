@@ -10,6 +10,7 @@ import pl.kosiorski.multiplication.repository.MultiplicationResultAttemptReposit
 import pl.kosiorski.multiplication.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -65,5 +66,10 @@ public class MultiplicationServiceImpl implements MultiplicationService {
     attemptRepository.save(checkedAttempt);
 
     return isCorrect;
+  }
+
+  @Override
+  public List<MultiplicationResultAttempt> getStatsForUser(String userAlias) {
+    return attemptRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
   }
 }

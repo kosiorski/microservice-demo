@@ -11,6 +11,8 @@ import pl.kosiorski.multiplication.repository.MultiplicationRepository;
 import pl.kosiorski.multiplication.repository.MultiplicationResultAttemptRepository;
 import pl.kosiorski.multiplication.repository.UserRepository;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -85,5 +87,29 @@ public class MultiplicationServiceImplTest {
     // then
     assertThat(attemptResult).isFalse();
     verify(attemptRepository).save(attempt);
+  }
+
+  @Test
+  public void retrieveStats() {
+    // given
+    Multiplication multiplication = new Multiplication(50, 60);
+    User user = new User("adam kowalski");
+    MultiplicationResultAttempt attempt1 =
+        new MultiplicationResultAttempt(user, multiplication, 3010, false);
+    MultiplicationResultAttempt attempt2 =
+        new MultiplicationResultAttempt(user, multiplication, 3051, false);
+
+    List<MultiplicationResultAttempt> latestAttempts = Arrays.asList(attempt1, attempt2);
+
+    given(userRepository.findByAlias("adam kowalski")).willReturn(Optional.empty());
+    given(attemptRepository.findTop5ByUserAliasOrderByIdDesc("adam kowalski"))
+        .willReturn(latestAttempts);
+
+    // when
+    List<MultiplicationResultAttempt> latestAttemptsResult =
+        multiplicationServiceImpl.getStatsForUser("adam kowalski");
+
+    // then
+    assertThat(latestAttemptsResult).isEqualTo(latestAttempts);
   }
 }
