@@ -1,4 +1,4 @@
-package pl.kosiorski.gamification.event;
+package pl.kosiorski.multiplication.event;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class MultiplicationSolvedEvent implements Serializable {
 
-    private final Long multiplicationResultAttemptId;
-    private final Long userId;
-    private final Long correct;
+  private final Long multiplicationResultAttemptId;
+  private final Long userId;
+  private final boolean correct;
 }

@@ -1,4 +1,4 @@
-package pl.kosiorski.gamification.config;
+package pl.kosiorski.multiplication.config;
 
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

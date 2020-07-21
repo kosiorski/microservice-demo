@@ -1,9 +1,11 @@
-package pl.kosiorski.gamification.event;
+package pl.kosiorski.multiplication.event;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /** Handles the communication with the Event Bus. */
+@Component
 public class EventDispatcher {
 
   private final RabbitTemplate rabbitTemplate;

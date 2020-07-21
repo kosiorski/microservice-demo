@@ -33,7 +33,7 @@ public class MultiplicationServiceImplTest {
     MockitoAnnotations.initMocks(this);
     this.multiplicationServiceImpl =
         new MultiplicationServiceImpl(
-            randomGeneratorService, attemptRepository, userRepository, multiplicationRepository);
+            randomGeneratorService, attemptRepository, userRepository, multiplicationRepository, eventDispatcher);
   }
 
   //    @Test

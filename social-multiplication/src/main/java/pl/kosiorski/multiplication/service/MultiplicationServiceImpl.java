@@ -5,6 +5,8 @@ import org.springframework.util.Assert;
 import pl.kosiorski.multiplication.domain.Multiplication;
 import pl.kosiorski.multiplication.domain.MultiplicationResultAttempt;
 import pl.kosiorski.multiplication.domain.User;
+import pl.kosiorski.multiplication.event.EventDispatcher;
+import pl.kosiorski.multiplication.event.MultiplicationSolvedEvent;
 import pl.kosiorski.multiplication.repository.MultiplicationRepository;
 import pl.kosiorski.multiplication.repository.MultiplicationResultAttemptRepository;
 import pl.kosiorski.multiplication.repository.UserRepository;
@@ -20,16 +22,19 @@ public class MultiplicationServiceImpl implements MultiplicationService {
   private final MultiplicationResultAttemptRepository attemptRepository;
   private final UserRepository userRepository;
   private final MultiplicationRepository multiplicationRepository;
+  private final EventDispatcher eventDispatcher;
 
   public MultiplicationServiceImpl(
       RandomGeneratorService randomGeneratorService,
       MultiplicationResultAttemptRepository attemptRepository,
       UserRepository userRepository,
-      MultiplicationRepository multiplicationRepository) {
+      MultiplicationRepository multiplicationRepository,
+      EventDispatcher eventDispatcher) {
     this.randomGeneratorService = randomGeneratorService;
     this.attemptRepository = attemptRepository;
     this.userRepository = userRepository;
     this.multiplicationRepository = multiplicationRepository;
+    this.eventDispatcher = eventDispatcher;
   }
 
   @Override
@@ -64,6 +69,11 @@ public class MultiplicationServiceImpl implements MultiplicationService {
             isCorrect);
 
     attemptRepository.save(checkedAttempt);
+
+    // Communicates the result via Event
+    eventDispatcher.send(
+        new MultiplicationSolvedEvent(
+            checkedAttempt.getId(), checkedAttempt.getUser().getId(), checkedAttempt.isCorrect()));
 
     return isCorrect;
   }
