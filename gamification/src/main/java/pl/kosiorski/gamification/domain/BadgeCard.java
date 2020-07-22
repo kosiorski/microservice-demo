@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * This class links a Badge to a User. Contains also a timestamp with the moment in which the user got it.
+ */
 @RequiredArgsConstructor
 @Getter
 @ToString
