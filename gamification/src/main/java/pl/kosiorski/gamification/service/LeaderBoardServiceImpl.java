@@ -1,10 +1,12 @@
 package pl.kosiorski.gamification.service;
 
+import org.springframework.stereotype.Service;
 import pl.kosiorski.gamification.domain.LeaderBoardRow;
 import pl.kosiorski.gamification.repository.ScoreCardRepository;
 
 import java.util.List;
 
+@Service
 public class LeaderBoardServiceImpl implements LeaderBoardService {
 
   private final ScoreCardRepository scoreCardRepository;
