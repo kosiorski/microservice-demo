@@ -27,7 +27,7 @@ public final class MultiplicationResultAttempt {
   private final int resultAttempt;
   private final boolean correct;
 
-  MultiplicationResultAttempt() {
+  public MultiplicationResultAttempt() {
     user = null;
     multiplication = null;
     resultAttempt = -1;

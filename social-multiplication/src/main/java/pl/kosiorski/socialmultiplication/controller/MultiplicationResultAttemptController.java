@@ -1,8 +1,5 @@
 package pl.kosiorski.socialmultiplication.controller;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kosiorski.socialmultiplication.domain.MultiplicationResultAttempt;
@@ -37,7 +34,8 @@ final class MultiplicationResultAttemptController {
   }
 
   @GetMapping
-  ResponseEntity<List<MultiplicationResultAttempt>> getStatistics(@RequestParam("alias") String alias) {
+  ResponseEntity<List<MultiplicationResultAttempt>> getStatistics(
+      @RequestParam("alias") String alias) {
     return ResponseEntity.ok(multiplicationService.getStatsForUser(alias));
   }
 }

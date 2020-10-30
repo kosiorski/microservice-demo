@@ -1,4 +1,4 @@
-package pl.kosiorski.multiplication.config;
+package pl.kosiorski.socialmultiplication.config;
 
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

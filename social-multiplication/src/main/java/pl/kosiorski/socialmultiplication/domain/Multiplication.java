@@ -1,4 +1,4 @@
-package pl.kosiorski.multiplication.domain;
+package pl.kosiorski.socialmultiplication.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
