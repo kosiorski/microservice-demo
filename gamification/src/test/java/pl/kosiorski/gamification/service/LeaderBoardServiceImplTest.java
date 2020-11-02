@@ -1,17 +1,48 @@
 package pl.kosiorski.gamification.service;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import pl.kosiorski.gamification.domain.LeaderBoardRow;
 import pl.kosiorski.gamification.repository.ScoreCardRepository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.List;
 
-class LeaderBoardServiceImplTest {
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+
+public class LeaderBoardServiceImplTest {
 
   private LeaderBoardServiceImpl leaderBoardService;
 
   @Mock private ScoreCardRepository scoreCardRepository;
 
-  @BeforeEach
-  void setUp() {}
+  @Before
+  public void setUp() {
+    MockitoAnnotations.initMocks(this);
+    leaderBoardService = new LeaderBoardServiceImpl(scoreCardRepository);
+  }
+
+  @Test
+  public void getCurrentLeaderBoardTest() {
+    // given
+    Long firstUserId = 1L;
+    Long secondUserId = 2L;
+    Long thirdUserId = 3L;
+    LeaderBoardRow leaderBoardRow1 = new LeaderBoardRow(firstUserId, 300L);
+    LeaderBoardRow leaderBoardRow2 = new LeaderBoardRow(secondUserId, 400L);
+    LeaderBoardRow leaderBoardRow3 = new LeaderBoardRow(thirdUserId, 100L);
+    List<LeaderBoardRow> expectedLeaderBoard =
+        Arrays.asList(leaderBoardRow1, leaderBoardRow2, leaderBoardRow3);
+
+    given(scoreCardRepository.findFirst10()).willReturn(expectedLeaderBoard);
+
+    // when
+    List<LeaderBoardRow> leaderBoard = leaderBoardService.getCurrentLeaderBoard();
+
+    // then
+    assertThat(leaderBoard).isEqualTo(expectedLeaderBoard);
+  }
 }
