@@ -21,15 +21,12 @@ public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
   int getTotalScoreForUser(@Param("userId") final Long userId);
 
   /**
-   * Retrieves a list of {@link LeaderBoardRow}s representing the Leader Board of users and their
-   * total score.
-   *
+   * Retrieves a list of {@link LeaderBoardRow}s representing the Leader Board of users and their total score.
    * @return the leader board, sorted by highest score first.
    */
-  @Query(
-      "SELECT NEW pl.kosiorski.gamification.domain.LeaderBoardRow(s.userId, SUM(s.score)) "
-          + "FROM pl.kosiorski.gamification.domain.ScoreCard s "
-          + "GROUP BY s.userId ORDER BY SUM(s.score) DESC")
+  @Query("SELECT NEW pl.kosiorski.gamification.domain.LeaderBoardRow(s.userId, SUM(s.score)) " +
+          "FROM pl.kosiorski.gamification.domain.ScoreCard s " +
+          "GROUP BY s.userId ORDER BY SUM(s.score) DESC")
   List<LeaderBoardRow> findFirst10();
 
   /**
