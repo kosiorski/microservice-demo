@@ -1,15 +1,16 @@
 package pl.kosiorski.gamification.service;
 
-import org.junit.jupiter.api.Test;
-import org.junit.Before;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import pl.kosiorski.gamification.domain.Badge;
 import pl.kosiorski.gamification.domain.BadgeCard;
 import pl.kosiorski.gamification.domain.GameStats;
 import pl.kosiorski.gamification.domain.ScoreCard;
 import pl.kosiorski.gamification.repository.BadgeCardRepository;
 import pl.kosiorski.gamification.repository.ScoreCardRepository;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +28,7 @@ public class GameServiceImplTest {
   @Mock private ScoreCardRepository scoreCardRepository;
 
   @Before
-  void setUp() {
+  public void setUp() {
     MockitoAnnotations.initMocks(this);
     gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository);
   }
@@ -113,7 +114,7 @@ public class GameServiceImplTest {
 
     // assert - should score one card and win the badge FIRST_WON
     assertThat(stats.getScore()).isEqualTo(totalScore);
-    assertThat(stats.getBadges()).containsOnly(Badge.BRONZE_MULTIPLICATOR);
+    assertThat(stats.getBadges()).containsOnly(Badge.SILVER_MULTIPLICATOR);
   }
 
   private List<ScoreCard> createNScoreCards(int n, Long userId) {
