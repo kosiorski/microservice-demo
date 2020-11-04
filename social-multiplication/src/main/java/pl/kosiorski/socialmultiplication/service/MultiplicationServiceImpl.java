@@ -11,8 +11,10 @@ import pl.kosiorski.socialmultiplication.repository.MultiplicationRepository;
 import pl.kosiorski.socialmultiplication.repository.MultiplicationResultAttemptRepository;
 import pl.kosiorski.socialmultiplication.repository.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -80,5 +82,12 @@ public class MultiplicationServiceImpl implements MultiplicationService {
   @Override
   public List<MultiplicationResultAttempt> getStatsForUser(String userAlias) {
     return attemptRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
+  }
+
+  @Override
+  public MultiplicationResultAttempt getResultById(Long resultId) {
+    return attemptRepository
+        .findById(resultId)
+        .orElseThrow(() -> new EntityNotFoundException(resultId.toString()));
   }
 }

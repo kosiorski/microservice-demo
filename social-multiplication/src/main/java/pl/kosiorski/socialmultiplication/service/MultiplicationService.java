@@ -4,6 +4,7 @@ import pl.kosiorski.socialmultiplication.domain.Multiplication;
 import pl.kosiorski.socialmultiplication.domain.MultiplicationResultAttempt;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MultiplicationService {
   /**
@@ -17,4 +18,6 @@ public interface MultiplicationService {
   boolean checkAttempt(final MultiplicationResultAttempt resultAttempt);
 
   List<MultiplicationResultAttempt> getStatsForUser(String userAlias);
+
+  MultiplicationResultAttempt getResultById(Long resultId);
 }

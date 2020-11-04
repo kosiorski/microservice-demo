@@ -38,4 +38,10 @@ final class MultiplicationResultAttemptController {
       @RequestParam("alias") String alias) {
     return ResponseEntity.ok(multiplicationService.getStatsForUser(alias));
   }
+
+  @GetMapping("/{resultId}")
+  ResponseEntity<MultiplicationResultAttempt> getResultById(
+      @PathVariable("resultId") Long resultId) {
+    return ResponseEntity.ok(multiplicationService.getResultById(resultId));
+  }
 }
